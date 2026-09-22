@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TETRIS</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="game-wrap">
+    <h1>TETRIS</h1>
+
+    <div class="main-area">
+      <aside class="side-panel left">
+        <div class="panel-box">
+          <h2>HOLD</h2>
+          <canvas id="hold-canvas" width="100" height="100"></canvas>
+        </div>
+        <div class="panel-box">
+          <h2>SCORE</h2>
+          <p id="score">0</p>
+        </div>
+        <div class="panel-box">
+          <h2>LEVEL</h2>
+          <p id="level">1</p>
+        </div>
+        <div class="panel-box">
+          <h2>LINES</h2>
+          <p id="lines">0</p>
+        </div>
+        <div class="panel-box">
+          <h2>HIGH SCORE</h2>
+          <p id="high-score">0</p>
+        </div>
+      </aside>
+
+      <div class="board-area">
+        <canvas id="board-canvas" width="300" height="600"></canvas>
+        <div id="overlay" class="overlay hidden">
+          <p id="overlay-text">PAUSED</p>
+          <button id="overlay-button">START</button>
+        </div>
+      </div>
+
+      <aside class="side-panel right">
+        <div class="panel-box">
+          <h2>NEXT</h2>
+          <canvas id="next-canvas" width="100" height="300"></canvas>
+        </div>
+        <div class="panel-box controls">
+          <h2>CONTROLS</h2>
+          <ul>
+            <li>&larr; &rarr; : 移動</li>
+            <li>&uarr; / X : 右回転</li>
+            <li>Z : 左回転</li>
+            <li>&darr; : ソフトドロップ</li>
+            <li>Space : ハードドロップ</li>
+            <li>C : ホールド</li>
+            <li>P : ポーズ</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+
+    <div class="touch-controls">
+      <button id="btn-left">&larr;</button>
+      <button id="btn-rotate-l">Z</button>
+      <button id="btn-rotate-r">X</button>
+      <button id="btn-right">&rarr;</button>
+      <button id="btn-down">&darr;</button>
+      <button id="btn-drop">DROP</button>
+      <button id="btn-hold">HOLD</button>
+      <button id="btn-pause">PAUSE</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
