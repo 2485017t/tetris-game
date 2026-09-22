@@ -411,7 +411,7 @@
   document.addEventListener("keydown", (e) => {
     const action = resolveAction(e);
     if (gameOver && action !== "KeyP") return;
-    const repeatable = action === "KeyX" || action === "ArrowUp" || action === "ArrowDown";
+    const repeatable = action === "KeyX" || action === "ArrowDown";
     if (!repeatable && keyState[action]) return;
     keyState[action] = true;
 
@@ -422,7 +422,6 @@
       case "ArrowRight":
         move(1, 0);
         break;
-      case "ArrowUp":
       case "ArrowDown":
         softDrop();
         break;
@@ -432,7 +431,7 @@
       case "KeyZ":
         rotate(-1);
         break;
-      case "Space":
+      case "ArrowUp":
         e.preventDefault();
         hardDrop();
         break;
