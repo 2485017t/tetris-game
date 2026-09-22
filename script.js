@@ -385,13 +385,36 @@
     rafId = requestAnimationFrame(loop);
   }
 
+  const KEY_ALIASES = {
+    ArrowLeft: "ArrowLeft",
+    ArrowRight: "ArrowRight",
+    ArrowDown: "ArrowDown",
+    ArrowUp: "ArrowUp",
+    " ": "Space",
+    Spacebar: "Space",
+    x: "KeyX",
+    X: "KeyX",
+    z: "KeyZ",
+    Z: "KeyZ",
+    c: "KeyC",
+    C: "KeyC",
+    p: "KeyP",
+    P: "KeyP",
+  };
+
+  function resolveAction(e) {
+    if (e.code) return e.code;
+    return KEY_ALIASES[e.key] || "";
+  }
+
   const keyState = {};
   document.addEventListener("keydown", (e) => {
-    if (gameOver && e.code !== "KeyP") return;
-    if (keyState[e.code]) return;
-    keyState[e.code] = true;
+    const action = resolveAction(e);
+    if (gameOver && action !== "KeyP") return;
+    if (keyState[action]) return;
+    keyState[action] = true;
 
-    switch (e.code) {
+    switch (action) {
       case "ArrowLeft":
         move(-1, 0);
         break;
@@ -425,7 +448,7 @@
   });
 
   document.addEventListener("keyup", (e) => {
-    keyState[e.code] = false;
+    keyState[resolveAction(e)] = false;
   });
 
   function bindTouch(id, action) {
@@ -447,7 +470,11 @@
   document.getElementById("btn-pause").addEventListener("click", togglePause);
 
   overlayButton.addEventListener("click", () => {
-    resetGame();
+    if (paused && running && !gameOver) {
+      togglePause();
+    } else {
+      resetGame();
+    }
   });
 
   overlayText.textContent = "TETRIS";
