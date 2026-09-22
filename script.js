@@ -411,7 +411,7 @@
   document.addEventListener("keydown", (e) => {
     const action = resolveAction(e);
     if (gameOver && action !== "KeyP") return;
-    const repeatable = action === "KeyX" || action === "ArrowDown";
+    const repeatable = action === "KeyX" || action === "ArrowDown" || action === "ArrowLeft" || action === "ArrowRight";
     if (!repeatable && keyState[action]) return;
     keyState[action] = true;
 
